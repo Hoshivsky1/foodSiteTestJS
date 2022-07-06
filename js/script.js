@@ -322,23 +322,6 @@ window.addEventListener('DOMContentLoaded', () => {
         width = window.getComputedStyle(slidesWrapper).width,
         slidesField = document.querySelector('.offer__slider-inner');
 
-    function dotsOpacity() {
-        dots.forEach(dot => dot.style.opacity = `.5`);
-        dots[slideIndex-1].style.opacity = 1;
-    }
-
-    function addZeroToNumber() {
-        if (slides.length < 10) {
-            current.textContent =  `0${slideIndex}`;
-        } else {
-            current.textContent =  slideIndex;
-        }
-    }
-    
-    function replaceNumber(){
-        return +width.replace(/\D/g, '');
-    }
-
     if (slides.length < 10) {
         total.textContent = `0${slides.length}`;
         current.textContent =  `0${slideIndex}`;
@@ -402,11 +385,28 @@ window.addEventListener('DOMContentLoaded', () => {
         dots.push(dot);
     }
 
+    function deleteNotDigits(str){
+        return +str.replace(/\D/g, '');
+    }
+
+    function dotsOpacity() {
+        dots.forEach(dot => dot.style.opacity = `.5`);
+        dots[slideIndex-1].style.opacity = 1;
+    }
+
+    function addZeroToNumber() {
+        if (slides.length < 10) {
+            current.textContent =  `0${slideIndex}`;
+        } else {
+            current.textContent =  slideIndex;
+        }
+    }
+
     next.addEventListener('click', () => {
-        if (offset == (replaceNumber() * (slides.length - 1))) {
+        if (offset == (deleteNotDigits(width) * (slides.length - 1))) {
             offset = 0;
         } else {
-            offset += replaceNumber(); 
+            offset += deleteNotDigits(width); 
         }
 
         slidesField.style.transform = `translateX(-${offset}px)`;
@@ -423,9 +423,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
     prev.addEventListener('click', () => {
         if (offset == 0) {
-            offset = replaceNumber() * (slides.length - 1);
+            offset = deleteNotDigits(width) * (slides.length - 1);
         } else {
-            offset -= replaceNumber();
+            offset -= deleteNotDigits(width);
         }
 
         slidesField.style.transform = `translateX(-${offset}px)`;
@@ -445,7 +445,7 @@ window.addEventListener('DOMContentLoaded', () => {
             const slideTo = e.target.getAttribute('data-slide-to');
             
             slideIndex = slideTo;
-            offset = replaceNumber() * (slideTo - 1);
+            offset = deleteNotDigits(width) * (slideTo - 1);
 
             slidesField.style.transform = `translateX(-${offset}px)`;
 
