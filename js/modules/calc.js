@@ -1,40 +1,25 @@
 function calc() {
     const result = document.querySelector('.calculating__result span');
+    
     let sex, height, weight, age, ratio;
 
-    if(localStorage.getItem('sex')) {
+    if (localStorage.getItem('sex')) {
         sex = localStorage.getItem('sex');
     } else {
         sex = 'female';
         localStorage.setItem('sex', 'female');
     }
 
-    if(localStorage.getItem('ratio')) {
+    if (localStorage.getItem('ratio')) {
         ratio = localStorage.getItem('ratio');
     } else {
         ratio = 1.375;
         localStorage.setItem('ratio', 1.375);
     }
 
-    function initLocalSettings(selector, activeClass) {
-        const elements = document.querySelectorAll(selector);
-        elements.forEach(elem => {
-            elem.classList.remove(activeClass);
-            if (elem.getAttribute('id') === localStorage.getItem('sex')){
-                elem.classList.add(activeClass);
-            }
-            if (elem.getAttribute('data-ratio') === localStorage.getItem('ratio')) {
-                elem.classList.add(activeClass);
-            }
-        });
-    }
-
-    initLocalSettings('#gender div', 'calculating__choose-item_active');
-    initLocalSettings('.calculating__choose_big div', 'calculating__choose-item_active');
-
     function calcTotal() {
         if (!sex || !height || !weight || !age || !ratio) {
-            result.textContent = '----'; // Можете придумать что угодно
+            result.textContent = '____';
             return;
         }
         if (sex === 'female') {
@@ -45,6 +30,23 @@ function calc() {
     }
 
     calcTotal();
+
+    function initLocalSettings(selector, activeClass) {
+        const elements = document.querySelectorAll(selector);
+
+        elements.forEach(elem => {
+            elem.classList.remove(activeClass);
+            if (elem.getAttribute('id') === localStorage.getItem('sex')) {
+                elem.classList.add(activeClass);
+            }
+            if (elem.getAttribute('data-ratio') === localStorage.getItem('ratio')) {
+                elem.classList.add(activeClass);
+            }
+        });
+    }
+
+    initLocalSettings('#gender div', 'calculating__choose-item_active');
+    initLocalSettings('.calculating__choose_big div', 'calculating__choose-item_active');
 
     function getStaticInformation(selector, activeClass) {
         const elements = document.querySelectorAll(selector);
@@ -77,13 +79,11 @@ function calc() {
         const input = document.querySelector(selector);
 
         input.addEventListener('input', () => {
-
             if (input.value.match(/\D/g)) {
-                input.style.border = '1px solid red';
+                input.style.border = "1px solid red";
             } else {
                 input.style.border = 'none';
             }
-
             switch(input.getAttribute('id')) {
                 case "height":
                     height = +input.value;
@@ -103,6 +103,7 @@ function calc() {
     getDynamicInformation('#height');
     getDynamicInformation('#weight');
     getDynamicInformation('#age');
+
 }
 
-module.exports = calc;
+export default calc;
