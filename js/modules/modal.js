@@ -50,7 +50,7 @@ function modal(triggerSelector, modalSelector, modalTimerId) {
     }
     window.addEventListener('scroll', showModalByScroll);
 }
-
+ 
 export default modal;
 export {closeModal};
 export {showModal};
