@@ -25,23 +25,8 @@
   "requests": [
     {
       "name": "Hoshivskyi",
-      "phone": "+380(50) 150 - 29 - 80",
+      "phone": "+380(50) 150 - 00 - 00",
       "id": 1
-    },
-    {
-      "name": "Hoshivskyi",
-      "phone": "+380956377000",
-      "id": 2
-    },
-    {
-      "name": "Max",
-      "phone": "+7(333)232-32-32",
-      "id": 3
-    },
-    {
-      "name": "Hoshivskyi",
-      "phone": "235325235",
-      "id": 4
     }
   ]
-}
+} 

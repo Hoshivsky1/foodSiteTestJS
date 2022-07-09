@@ -106,4 +106,4 @@ function calc() {
 
 }
 
-export default calc;
+export default calc; 
