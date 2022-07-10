@@ -16,5 +16,6 @@ To start work you need local-server MAMP or any other local-server that can acce
 
 ```
 json-server db.json
+run MAMP(or any other local-server)
 ``` 
 
