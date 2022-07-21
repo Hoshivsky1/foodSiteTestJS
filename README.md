@@ -9,7 +9,6 @@ A small site with several JavaScript modules. At the moment, the site has not cr
 npm install
 ```
 
-
 # Running application
 
 To start work you need local-server MAMP or any other local-server that can accept POST and GET.You also need to run the json-server 
